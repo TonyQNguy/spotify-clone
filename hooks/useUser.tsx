@@ -4,7 +4,6 @@ import {
     useUser as useSupaUser,
     User 
 } from "@supabase/auth-helpers-react";
-
 import { Subscription } from "@supabase/auth-js";
 import { useEffect, useState, createContext, useContext } from "react";
 
@@ -80,4 +79,13 @@ export const MyUserContextProvider = (props: Props) => {
     };
 
     return <UserContext.Provider value={value}/>
+};
+
+export const useUser = () => { 
+    const context = useContext(UserContext);
+    if (context === undefined) { 
+        throw new Error ('useUser must be used within a MyUserContextProvider')
+    }
+
+    return context;
 };
