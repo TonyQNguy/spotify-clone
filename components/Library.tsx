@@ -1,11 +1,23 @@
 "use client";
 
+import useAuthModal from "@/hooks/useAuthModal";
+import useUploadModal from "@/hooks/useUploadModal";
+import { useUser } from "@/hooks/useUser";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 
 const Library = () => {
+    const authModal = useAuthModal();
+    const uploadModal = useUploadModal();
+    const  { user } = useUser();
+
     const onClick = () => { 
-        // Handle upload later
+        if (!user) { 
+            return authModal.onOpen();
+        }
+        
+        // TODO: Check for Subscription
+        return uploadModal.onOpen();
     }
 
   return (
@@ -43,7 +55,7 @@ const Library = () => {
                 className="
                     text-neutral-400
                     cursor-pointer
-                    hover: text-white
+                    hover:text-white
                     transition
                 "
             />
@@ -58,7 +70,7 @@ const Library = () => {
         List of Songs
         </div>
     </div>
-  )
+  );
 }
 
 export default Library
