@@ -21,5 +21,5 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({
         </SessionContextProvider>
     )
 }
-
+//test text
 export default SupabaseProvider;
